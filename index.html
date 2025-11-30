@@ -8,7 +8,7 @@
     :root{
       --bg:#f6f8f9;
       --card:#ffffff;
-      --accent:#2fa3ad; /* sobrio con color */
+      --accent:#2fa3ad;
       --muted:#6b7280;
       --dark:#111827;
       --shadow: 0 6px 18px rgba(16,24,40,0.06);
@@ -17,45 +17,61 @@
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;color:var(--dark);background:var(--bg);-webkit-font-smoothing:antialiased}
-    header{background:var(--accent);color:#fff;padding:28px 20px}
-    header .wrap{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px}
-    header h1{margin:0;font-weight:600;font-size:28px}
-    header p{margin:0;opacity:.95}
+    header{background:var(--accent);color:#fff;padding:18px 20px}
+    .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand h1{margin:0;font-weight:700;font-size:22px}
+    .brand p{margin:0;font-size:13px;opacity:.95}
+    .edge-img{height:56px;object-fit:contain}
     nav{max-width:var(--maxw);margin:18px auto;display:flex;gap:12px;padding:0 20px}
-    nav a{color:var(--accent);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a{color:var(--accent);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;background:transparent}
     .container{max-width:var(--maxw);margin:20px auto;padding:0 20px}
-    .hero{background:linear-gradient(0deg, rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('images/hero.jpg'); background-size:cover;background-position:center;border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);display:flex;gap:24px;align-items:center}
+    .hero{background:linear-gradient(180deg, rgba(47,163,173,0.06), rgba(47,163,173,0.02)); border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);margin-bottom:18px}
+    .hero .row{display:flex;gap:20px;align-items:center}
     .hero .left{flex:1}
-    .hero h2{margin:0 0 10px;font-size:22px;color:var(--dark)}
-    .hero p{margin:0;color:var(--muted)}
-    .card{background:var(--card);border-radius:12px;padding:22px;box-shadow:var(--shadow);margin-bottom:18px}
-    h3{margin:0 0 12px;color:var(--dark)}
-    p.lead{color:var(--muted);margin:0 0 10px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
+    h2{margin:0 0 8px}
+    h3{margin:0 0 10px;color:var(--dark)}
+    p.lead{color:var(--muted);margin:0 0 8px}
     .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
     .full{grid-column:1 / -1}
-    table{width:100%;border-collapse:collapse}
-    table th, table td{padding:10px;border-bottom:1px solid #eee;text-align:left}
+    ul.small{padding-left:18px;margin:6px 0;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    table th, table td{padding:8px;border-bottom:1px solid #eee;text-align:left}
     table th{background:#fafafa;color:var(--muted);font-weight:600}
     .muted{color:var(--muted)}
     .small{font-size:13px}
-    footer{max-width:var(--maxw);margin:30px auto 80px;padding:0 20px;color:var(--muted)}
+    footer{max-width:var(--maxw);margin:30px auto 80px;padding:0 20px;color:var(--muted);text-align:center}
     .btn{display:inline-block;background:var(--accent);color:white;padding:9px 14px;border-radius:10px;text-decoration:none;font-weight:700}
     .kpi{display:flex;gap:12px;flex-wrap:wrap}
-    .kpi .item{background:#fbfeff;padding:12px;border-radius:10px;border:1px solid #f0f6f7}
+    .kpi .item{background:#fbfeff;padding:10px;border-radius:10px;border:1px solid #f0f6f7;font-size:13px}
+    .team{display:flex;flex-direction:column;gap:6px;font-size:14px}
+    .link{color:var(--accent);text-decoration:none}
     /* responsive */
-    @media (max-width:900px){
+    @media (max-width:980px){
       .grid{grid-template-columns:1fr}
-      .hero{flex-direction:column;align-items:flex-start}
+      .header-inner{flex-direction:column;align-items:flex-start;gap:12px}
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER with edge images -->
   <header>
-    <div class="wrap">
-      <div>
-        <h1>Análisis y Modelos Predictivos — Rigidez Lateral en Galpones</h1>
-        <p class="small">Trabajo Integrador — Ciencia de Datos. Dataset: Smith & Uang. Google Colab: modelos y notebooks.</p>
+    <div class="header-inner">
+      <div class="brand">
+        <!-- LEFT EDGE IMAGE (logo) -->
+        <img src="images/logo-fiuba.png" alt="Fiuba" class="edge-img" style="height:56px">
+        <div>
+          <h1>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</h1>
+          <p class="small">Trabajo Integrador • Ciencia de Datos • Dataset: Smith & Uang • Notebooks en Google Colab</p>
+        </div>
+      </div>
+
+      <!-- RIGHT EDGE IMAGE -->
+      <div style="display:flex;align-items:center;gap:12px">
+        <a class="link" href="https://drive.google.com/drive/folders/13Fn1xkkZsv1lY5Hs4Q4VoJ8QeBCh8OqV" target="_blank">Dataset (Drive)</a>
+        <img src="images/densities.png" alt="densities" class="edge-img" style="height:56px">
       </div>
     </div>
   </header>
@@ -71,133 +87,133 @@
 
   <main class="container">
 
-    <!-- HERO / resumen -->
-    <section class="hero card full" id="inicio" style="background-color:transparent; background-image: none;">
-      <div style="background:linear-gradient(180deg, rgba(47,163,173,0.07), rgba(47,163,173,0.02)); padding:18px; border-radius:10px; width:100%">
+    <!-- HERO -->
+    <section class="hero card full" id="inicio">
+      <div class="row">
         <div class="left">
-          <h2>Objetivo del trabajo</h2>
-          <p class="lead">Evaluar si es posible estimar la <strong>rigidez lateral</strong> de galpones a partir de características geométricas y estructurales y compararla cuando se utilizan períodos naturales <em>medidos</em> frente a <em>estimados</em> (presentes en el dataset), para determinar si los períodos estimados son válidos en modelos predictivos.</p>
+          <h2>Objetivo</h2>
+          <p class="lead">Evaluar si es posible estimar la <strong>rigidez lateral</strong> de galpones a partir de sus características geométricas, estructurales y de carga, y comparar la performance de modelos que usan como predictor el período natural <em>medido</em> frente al <em>estimado</em> presente en el dataset.</p>
+          <p class="small muted">Si el período estimado produce predicciones similares, se podría reducir la necesidad de mediciones experimentales costosas en futuros proyectos.</p>
         </div>
-        <div style="margin-top:12px">
-          <a class="btn" href="#modelos">Ver modelos</a>
+        <div style="min-width:220px;text-align:right">
+          <a class="btn" href="#modelos">Ir a Modelos</a>
         </div>
       </div>
     </section>
 
-    <!-- Contenido en dos columnas -->
     <section class="grid">
 
       <div>
-        <!-- Introducción -->
+        <!-- INTRO -->
         <article class="card" id="introduccion">
           <h3>Introducción</h3>
-          <p>La rigidez lateral controla la respuesta de una estructura frente a cargas horizontales. Medir el período natural real es costoso; el objetivo es verificar si usando el período estimado del dataset es posible obtener estimaciones de rigidez comparables y precisas mediante modelos de machine learning.</p>
+          <p>La rigidez lateral determina la respuesta frente a cargas horizontales (viento y sismo). Medir el período natural en campo tiene costos y logística no siempre disponibles. Este trabajo propone evaluar si, usando datos del dataset (incluyendo período estimado), podemos construir modelos predictivos útiles para el prediseño y evaluación rápida.</p>
         </article>
 
-        <!-- Dataset -->
+        <!-- DATASET -->
         <article class="card" id="dataset">
           <h3>Dataset</h3>
-          <p class="muted small">Fuente: Matthew D. Smith & Chia-Ming Uang. El dataset incluye variables geométricas, presencia de cerramientos, cargas, y dos valores de período natural (medido y estimado).</p>
+          <p class="muted small">Fuente: Matthew D. Smith & Chia-Ming Uang — <a class="link" href="https://drive.google.com/drive/folders/13Fn1xkkZsv1lY5Hs4Q4VoJ8QeBCh8OqV" target="_blank">Drive (dataset)</a></p>
 
-          <h4 style="margin-top:14px">Variables principales</h4>
-          <ul class="small muted">
-            <li>Período natural (medido)</li>
-            <li>Período natural (estimado)</li>
-            <li>Rigidez lateral (target)</li>
-            <li>Altura, ancho, esbeltez</li>
-            <li>Cerramientos de hormigón (sí/no)</li>
-            <li>Cargas aplicadas (viento, gravedad)</li>
+          <h4 style="margin-top:12px">Características principales</h4>
+          <ul class="small">
+            <li><strong>Numéricas continuas:</strong> altura, longitud, esbeltez, peso, período natural (medido y estimado), participación de masa, rigidez lateral (target), factor de ponderación.</li>
+            <li><strong>Categóricas nominales:</strong> material del cerramiento, tipo de estructura, tipo de techo.</li>
+            <li><strong>Numéricas discretas:</strong> carga de nieve (kg/m²) u otras cargas discretas.</li>
+            <li><strong>Categóricas ordinales:</strong> viento de diseño (bajo/alto), actividad sísmica (baja/alta).</li>
           </ul>
 
-          <p class="small muted">Nota: subí aquí tus archivos CSV o enlaza a tu Colab en la sección de enlaces (ver lateral).</p>
+          <h4 style="margin-top:8px">Limpieza y preparación</h4>
+          <p class="muted small">Traducción de variables al español, filtrado de registros no relevantes (p. ej. otros tipos estructurales), renombrado de columnas y conversión de tipos. Se eliminaron outliers extremos cuando no aportaban información fiable.</p>
+
+          <h4 style="margin-top:8px">Contexto de aplicación</h4>
+          <p class="small muted">El objetivo práctico es facilitar el prediseño y la evaluación rápida de galpones por ingenieros civiles, reduciendo costos y tiempos cuando no es posible medir períodos en campo.</p>
         </article>
 
-        <!-- Análisis Exploratorio -->
+        <!-- ANALISIS -->
         <article class="card" id="analisis">
           <h3>Análisis Exploratorio</h3>
-          <p class="muted small">Resumen de lo hecho en TP1:</p>
-          <ul>
-            <li>Comparación de distribuciones entre período medido y estimado.</li>
-            <li>Correlaciones entre rigidez y variables geométricas.</li>
-            <li>Identificación preliminar de variables influyentes (periodo, altura, cerramientos).</li>
+          <p>Para responder las preguntas planteadas realizamos:</p>
+          <ul class="small">
+            <li>Análisis de distribuciones y boxplots de variables clave (periodo medido vs estimado, rigidez lateral, altura).</li>
+            <li>Análisis de correlación entre rigidez y variables geométricas/físicas.</li>
+            <li>Visualización de relación periodo vs rigidez (observamos relación inversa: a mayor periodo, menor rigidez).</li>
+            <li>Revisión de si una recta ajusta la relación; se observó no linealidad por lo que se exploraron transformaciones y modelos no lineales.</li>
           </ul>
-          <p class="small muted">Aquí podés incluir visualizaciones (png/jpg) exportadas desde Colab.</p>
+
+          <p class="small muted">Añadí aquí imágenes exportadas desde Colab (png). Subilas a la carpeta <code>images/</code> y referencialas en este mismo archivo.</p>
         </article>
 
-        <!-- Modelos -->
+        <!-- MODELADO -->
         <article class="card" id="modelos">
-          <h3>Modelos predictivos (TP2)</h3>
-          <p>Probamos varios enfoques para predecir la rigidez lateral a partir de las variables disponibles:</p>
-          <ul>
-            <li>Regresión lineal múltiple</li>
-            <li>Árbol de decisión</li>
-            <li>Random Forest</li>
-            <li>Gradient Boosting (XGBoost)</li>
-            <li>KNN Regressor</li>
-          </ul>
+          <h3>Modelos — Resumen de TP2</h3>
+          <p>Construimos modelos explicativos y predictivos para la rigidez lateral. Se utilizó validación cruzada (CV) e inferencia estadistica para comparar.</p>
 
-          <p class="muted small">Cada modelo fue entrenado y validado en splits y CV. Abajo dejé una tabla con resultados de ejemplo — reemplazalos por tus métricas reales.</p>
+          <h4 style="margin-top:8px">Modelo de generación (breve)</h4>
+          <p class="muted small">Se trabajó con modelos probabilísticos y determinísticos: regresión lineal, árboles, Random Forest, XGBoost y KNN. Además realizamos una inferencia bayesiana preliminar en una etapa exploratoria para analizar incertidumbres en parámetros clave.</p>
 
-          <div style="margin-top:12px; overflow:auto">
-            <table>
-              <thead>
-                <tr><th>Modelo</th><th>R² (val)</th><th>RMSE</th><th>MAE</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Regresión lineal</td><td>0.72</td><td>0.62</td><td>0.48</td></tr>
-                <tr><td>Árbol de decisión</td><td>0.61</td><td>0.79</td><td>0.61</td></tr>
-                <tr><td><strong>Random Forest (provisional)</strong></td><td><strong>0.86</strong></td><td><strong>0.34</strong></td><td><strong>0.25</strong></td></tr>
-                <tr><td>XGBoost</td><td>0.84</td><td>0.36</td><td>0.27</td></tr>
-                <tr><td>KNN</td><td>0.58</td><td>0.88</td><td>0.65</td></tr>
-              </tbody>
-            </table>
-            <p class="small muted">*Valores de ejemplo — reemplazar con las métricas de tus notebooks.*</p>
-          </div>
-        </article>
-
-        <!-- Comparación de estimaciones de rigidez -->
-        <article class="card" id="comparacion">
-          <h3>Comparación: rigidez estimada usando períodos medidos vs estimados</h3>
-
-          <p>En este trabajo <strong>no</strong> comparamos períodos entre sí; comparamos cómo cada tipo de período (medido o estimado) afecta la <em>estimación de la rigidez lateral</em> cuando se usa como predictor en los modelos.</p>
-
-          <h4>Interpretación física</h4>
-          <p class="muted small">Un período más corto implica mayor rigidez. Por eso, si el período estimado tiende a subestimar/ sobreestimar frente al medido, los modelos que lo usan producirán estimaciones de rigidez sistemáticamente distintas.</p>
-
-          <h4 style="margin-top:10px">Tabla comparativa (ejemplo)</h4>
+          <h4 style="margin-top:8px">Resultados (colocar métricas reales)</h4>
           <table>
-            <thead><tr><th>Configuración</th><th>R² (val)</th><th>RMSE</th><th>Observación</th></tr></thead>
-            <tbody>
-              <tr><td>Modelo con período <strong>medido</strong></td><td>0.87</td><td>0.32</td><td>Mejor ajuste (baseline)</td></tr>
-              <tr><td>Modelo con período <strong>estimado</strong></td><td>0.83</td><td>0.37</td><td>Desempeño ligeramente inferior, aceptable</td></tr>
+            <thead><tr><th>Modelo</th><th>R² (val)</th><th>RMSE</th><th>MAE</th></tr></thead>
+            <tbody id="metrics-placeholder">
+              <tr><td>Regresión lineal</td><td>--</td><td>--</td><td>--</td></tr>
             </tbody>
           </table>
 
-          <p class="muted small">Esta comparación muestra si el período estimado es viable en la práctica (si R² y errores son similares, se justifica su uso para nuevas estructuras).</p>
+          <p class="small muted">Pegá aquí las métricas de tus notebooks: reemplazá las filas anteriores con los valores reales desde Colab.</p>
         </article>
 
-        <!-- Conclusiones -->
+        <!-- COMPARACION -->
+        <article class="card" id="comparacion">
+          <h3>Comparación: periodos medidos vs estimados (sobre rigidez)</h3>
+
+          <p>En este trabajo <strong>no</strong> comparamos períodos naturales entre sí. Lo que comparamos es el impacto que tiene usar cada tipo de período (medido o estimado) como predictor en los modelos de rigidez lateral.</p>
+
+          <p class="muted small">Interpretación: un período corto → mayor rigidez. Si el período estimado sistemáticamente difiere del medido, los modelos que lo usan producirán estimaciones diferentes de rigidez. El objetivo es evaluar si dichas diferencias son aceptables para uso práctico.</p>
+
+          <h4 style="margin-top:8px">Ejemplo de resultado comparativo (reemplazar)</h4>
+          <table>
+            <thead><tr><th>Configuración</th><th>R²</th><th>RMSE</th><th>Observación</th></tr></thead>
+            <tbody>
+              <tr><td>Modelo con período <strong>medido</strong></td><td>0.87</td><td>0.32</td><td>Baseline (mejor ajuste)</td></tr>
+              <tr><td>Modelo con período <strong>estimado</strong></td><td>0.83</td><td>0.37</td><td>Rendimiento ligeramente inferior pero aceptable</td></tr>
+            </tbody>
+          </table>
+
+          <p class="small muted">Si las métricas son similares, el período estimado se considera válido para predicciones en la práctica.</p>
+        </article>
+
+        <!-- CONCLUSIONES -->
         <article class="card" id="conclusiones">
-          <h3>Conclusiones (versión preliminar)</h3>
-          <ul>
-            <li>La variable más influyente en la predicción de rigidez es el <strong>período natural</strong>, seguida por la altura y la presencia de cerramientos de hormigón.</li>
-            <li>Modelos de ensemble (Random Forest / XGBoost) superan claramente a los modelos lineales en ajustes y generalización.</li>
-            <li>Los modelos que usan el período <em>estimado</em> muestran un desempeño similar al que usan el período <em>medido</em>, con una ligera pérdida de precisión; por lo tanto, el uso del período estimado está <strong>justificado</strong> para aplicaciones prácticas donde medir el período real no es viable.</li>
+          <h3>Conclusiones (preliminares)</h3>
+          <ul class="small">
+            <li>El período natural es la variable más influyente para predecir rigidez lateral.</li>
+            <li>Las variables geométricas (altura, esbeltez) y la presencia de cerramientos de hormigón son relevantes.</li>
+            <li>Modelos de ensemble (Random Forest / XGBoost) tienden a obtener mejores resultados en precisión y generalización.</li>
+            <li>Si el desempeño del modelo con período <em>estimado</em> es comparable al que usa el período <em>medido</em>, se justifica su uso como herramienta de apoyo en prediseño.</li>
           </ul>
 
-          <p class="small muted">Nota: reemplazar conclusiones por resultados finales cuando tengas métricas definitivas.</p>
+          <h4 style="margin-top:8px">Equipo</h4>
+          <div class="team">
+            <div>Cherino, Mauricio</div>
+            <div>Dacak Colmán, Estefanía Jazmín</div>
+            <div>Funes Pereyra, Iván</div>
+            <div>Lannia, Leonardo Francisco</div>
+            <div>Martino, Ignacio Nahuel</div>
+            <div>Spera, Gonzalo Miguel</div>
+          </div>
         </article>
+
       </div>
 
-      <!-- Columna lateral -->
+      <!-- LATERAL -->
       <aside>
         <div class="card">
           <h3>Enlaces rápidos</h3>
-          <p class="small muted">Notebooks (Colab), datasets y archivos relevantes.</p>
           <ul class="small">
-            <li><a href="#" target="_blank">Notebook — Análisis Exploratorio (Colab)</a></li>
-            <li><a href="#" target="_blank">Notebook — Modelos (Colab)</a></li>
-            <li><a href="#" target="_blank">Dataset (CSV)</a></li>
+            <li><a class="link" href="https://colab.research.google.com/" target="_blank">Google Colab</a></li>
+            <li><a class="link" href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view?usp=drive_link" target="_blank">Dataset (Drive)</a></li>
+            
           </ul>
         </div>
 
@@ -205,29 +221,27 @@
           <h3>Resumen ejecutivo</h3>
           <p class="small muted">Objetivo: validar si el período estimado permite estimar rigidez con precisión similar al período medido.</p>
           <div style="margin-top:8px" class="kpi">
-            <div class="item small">Mejor modelo: <strong>Random Forest</strong></div>
-            <div class="item small">Variable clave: <strong>Período natural</strong></div>
-            <div class="item small">Formato entrega: Informe + Colab</div>
+            <div class="item">Mejor modelo: <strong>Random Forest</strong></div>
+            <div class="item">Variable clave: <strong>Período natural</strong></div>
           </div>
         </div>
 
         <div class="card">
-          <h3>Contacto / Equipo</h3>
-          <p class="small">Nombre(s): Tu nombre / Integrantes del grupo</p>
-          <p class="small">Email: <a href="mailto:tu@correo.edu">tu@correo.edu</a></p>
+          <h3>Contacto</h3>
+          <p class="small">Email: <a class="link" href="mailto:tu@correo.edu">tu@correo.edu</a></p>
         </div>
 
       </aside>
+
     </section>
 
   </main>
 
   <footer>
     <div style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
-      <p class="small muted">Trabajo Integrador — Ciencia de Datos • 2025 • Reemplazá textos y métricas con tus resultados finales.</p>
+      <p class="small muted">Trabajo Integrador — Ciencia de Datos • 2025 •</p>
     </div>
   </footer>
 
 </body>
 </html>
-
