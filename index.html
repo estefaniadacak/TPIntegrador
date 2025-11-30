@@ -1,247 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Análisis y Modelos Predictivos — Rigidez Lateral en Galpones</title>
-  <style>
-    :root{
-      --bg:#f6f8f9;
-      --card:#ffffff;
-      --accent:#2fa3ad;
-      --muted:#6b7280;
-      --dark:#111827;
-      --shadow: 0 6px 18px rgba(16,24,40,0.06);
-      --radius:12px;
-      --maxw:1100px;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;color:var(--dark);background:var(--bg);-webkit-font-smoothing:antialiased}
-    header{background:var(--accent);color:#fff;padding:18px 20px}
-    .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand h1{margin:0;font-weight:700;font-size:22px}
-    .brand p{margin:0;font-size:13px;opacity:.95}
-    .edge-img{height:56px;object-fit:contain}
-    nav{max-width:var(--maxw);margin:18px auto;display:flex;gap:12px;padding:0 20px}
-    nav a{color:var(--accent);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;background:transparent}
-    .container{max-width:var(--maxw);margin:20px auto;padding:0 20px}
-    .hero{background:linear-gradient(180deg, rgba(47,163,173,0.06), rgba(47,163,173,0.02)); border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);margin-bottom:18px}
-    .hero .row{display:flex;gap:20px;align-items:center}
-    .hero .left{flex:1}
-    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
-    h2{margin:0 0 8px}
-    h3{margin:0 0 10px;color:var(--dark)}
-    p.lead{color:var(--muted);margin:0 0 8px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
-    .full{grid-column:1 / -1}
-    ul.small{padding-left:18px;margin:6px 0;color:var(--muted)}
-    table{width:100%;border-collapse:collapse;margin-top:8px}
-    table th, table td{padding:8px;border-bottom:1px solid #eee;text-align:left}
-    table th{background:#fafafa;color:var(--muted);font-weight:600}
-    .muted{color:var(--muted)}
-    .small{font-size:13px}
-    footer{max-width:var(--maxw);margin:30px auto 80px;padding:0 20px;color:var(--muted);text-align:center}
-    .btn{display:inline-block;background:var(--accent);color:white;padding:9px 14px;border-radius:10px;text-decoration:none;font-weight:700}
-    .kpi{display:flex;gap:12px;flex-wrap:wrap}
-    .kpi .item{background:#fbfeff;padding:10px;border-radius:10px;border:1px solid #f0f6f7;font-size:13px}
-    .team{display:flex;flex-direction:column;gap:6px;font-size:14px}
-    .link{color:var(--accent);text-decoration:none}
-    /* responsive */
-    @media (max-width:980px){
-      .grid{grid-template-columns:1fr}
-      .header-inner{flex-direction:column;align-items:flex-start;gap:12px}
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #f7f7f7;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: #1e1e1e;
+            color: white;
+            padding: 25px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 8px;
+        }
+
+        .sidebar p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 6px;
+        }
+
+        /* Main content */
+        .content {
+            margin-left: 260px;
+            padding: 40px;
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 6px;
+        }
+
+        img.center-img {
+            width: 80%;
+            display: block;
+            margin: 15px auto;
+        }
+    </style>
 </head>
+
 <body>
 
-  <!-- HEADER with edge images -->
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <!-- LEFT EDGE IMAGE (logo) -->
-        <img src="images/logo-fiuba.png" alt="Fiuba" class="edge-img" style="height:56px">
-        <div>
-          <h1>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</h1>
-          <p class="small">Trabajo Integrador • Ciencia de Datos • Dataset: Smith & Uang • Notebooks en Google Colab</p>
-        </div>
-      </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Integrantes</h2>
+        <p><strong>Estefanía Dacak</strong></p>
+        <p>📧 edacak@fi.uba.ar</p>
 
-      <!-- RIGHT EDGE IMAGE -->
-      <div style="display:flex;align-items:center;gap:12px">
-        <a class="link" href="https://drive.google.com/drive/folders/13Fn1xkkZsv1lY5Hs4Q4VoJ8QeBCh8OqV" target="_blank">Dataset (Drive)</a>
-        <img src="images/densities.png" alt="densities" class="edge-img" style="height:56px">
-      </div>
+        <p><strong>Otros integrantes:</strong></p>
+        <p>— Agregar aquí si querés</p>
+
+        <img src="fiuba.png" alt="Fiuba">
+        <img src="datos.png" alt="Dataset">
     </div>
-  </header>
 
-  <nav>
-    <a href="#introduccion">Introducción</a>
-    <a href="#dataset">Dataset</a>
-    <a href="#analisis">Análisis Exploratorio</a>
-    <a href="#modelos">Modelos</a>
-    <a href="#comparacion">Comparación</a>
-    <a href="#conclusiones">Conclusiones</a>
-  </nav>
+    <!-- MAIN CONTENT -->
+    <div class="content">
 
-  <main class="container">
+        <h1>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</h1>
+        <p>Trabajo Práctico Integrador – Grupo G3</p>
 
-    <!-- HERO -->
-    <section class="hero card full" id="inicio">
-      <div class="row">
-        <div class="left">
-          <h2>Objetivo</h2>
-          <p class="lead">Evaluar si es posible estimar la <strong>rigidez lateral</strong> de galpones a partir de sus características geométricas, estructurales y de carga, y comparar la performance de modelos que usan como predictor el período natural <em>medido</em> frente al <em>estimado</em> presente en el dataset.</p>
-          <p class="small muted">Si el período estimado produce predicciones similares, se podría reducir la necesidad de mediciones experimentales costosas en futuros proyectos.</p>
-        </div>
-        <div style="min-width:220px;text-align:right">
-          <a class="btn" href="#modelos">Ir a Modelos</a>
-        </div>
-      </div>
-    </section>
+        <h2>Introducción</h2>
+        <p>Aquí vamos a escribir la introducción del trabajo, basada en tu análisis y en el Colab.</p>
 
-    <section class="grid">
+        <h2>Objetivo del Estudio</h2>
+        <p>Acá irá el objetivo general y los objetivos específicos.</p>
 
-      <div>
-        <!-- INTRO -->
-        <article class="card" id="introduccion">
-          <h3>Introducción</h3>
-          <p>La rigidez lateral determina la respuesta frente a cargas horizontales (viento y sismo). Medir el período natural en campo tiene costos y logística no siempre disponibles. Este trabajo propone evaluar si, usando datos del dataset (incluyendo período estimado), podemos construir modelos predictivos útiles para el prediseño y evaluación rápida.</p>
-        </article>
-
-        <!-- DATASET -->
-        <article class="card" id="dataset">
-          <h3>Dataset</h3>
-          <p class="muted small">Fuente: Matthew D. Smith & Chia-Ming Uang — <a class="link" href="https://drive.google.com/drive/folders/13Fn1xkkZsv1lY5Hs4Q4VoJ8QeBCh8OqV" target="_blank">Drive (dataset)</a></p>
-
-          <h4 style="margin-top:12px">Características principales</h4>
-          <ul class="small">
-            <li><strong>Numéricas continuas:</strong> altura, longitud, esbeltez, peso, período natural (medido y estimado), participación de masa, rigidez lateral (target), factor de ponderación.</li>
-            <li><strong>Categóricas nominales:</strong> material del cerramiento, tipo de estructura, tipo de techo.</li>
-            <li><strong>Numéricas discretas:</strong> carga de nieve (kg/m²) u otras cargas discretas.</li>
-            <li><strong>Categóricas ordinales:</strong> viento de diseño (bajo/alto), actividad sísmica (baja/alta).</li>
-          </ul>
-
-          <h4 style="margin-top:8px">Limpieza y preparación</h4>
-          <p class="muted small">Traducción de variables al español, filtrado de registros no relevantes (p. ej. otros tipos estructurales), renombrado de columnas y conversión de tipos. Se eliminaron outliers extremos cuando no aportaban información fiable.</p>
-
-          <h4 style="margin-top:8px">Contexto de aplicación</h4>
-          <p class="small muted">El objetivo práctico es facilitar el prediseño y la evaluación rápida de galpones por ingenieros civiles, reduciendo costos y tiempos cuando no es posible medir períodos en campo.</p>
-        </article>
-
-        <!-- ANALISIS -->
-        <article class="card" id="analisis">
-          <h3>Análisis Exploratorio</h3>
-          <p>Para responder las preguntas planteadas realizamos:</p>
-          <ul class="small">
-            <li>Análisis de distribuciones y boxplots de variables clave (periodo medido vs estimado, rigidez lateral, altura).</li>
-            <li>Análisis de correlación entre rigidez y variables geométricas/físicas.</li>
-            <li>Visualización de relación periodo vs rigidez (observamos relación inversa: a mayor periodo, menor rigidez).</li>
-            <li>Revisión de si una recta ajusta la relación; se observó no linealidad por lo que se exploraron transformaciones y modelos no lineales.</li>
-          </ul>
-
-          <p class="small muted">Añadí aquí imágenes exportadas desde Colab (png). Subilas a la carpeta <code>images/</code> y referencialas en este mismo archivo.</p>
-        </article>
-
-        <!-- MODELADO -->
-        <article class="card" id="modelos">
-          <h3>Modelos — Resumen de TP2</h3>
-          <p>Construimos modelos explicativos y predictivos para la rigidez lateral. Se utilizó validación cruzada (CV) e inferencia estadistica para comparar.</p>
-
-          <h4 style="margin-top:8px">Modelo de generación (breve)</h4>
-          <p class="muted small">Se trabajó con modelos probabilísticos y determinísticos: regresión lineal, árboles, Random Forest, XGBoost y KNN. Además realizamos una inferencia bayesiana preliminar en una etapa exploratoria para analizar incertidumbres en parámetros clave.</p>
-
-          <h4 style="margin-top:8px">Resultados (colocar métricas reales)</h4>
-          <table>
-            <thead><tr><th>Modelo</th><th>R² (val)</th><th>RMSE</th><th>MAE</th></tr></thead>
-            <tbody id="metrics-placeholder">
-              <tr><td>Regresión lineal</td><td>--</td><td>--</td><td>--</td></tr>
-            </tbody>
-          </table>
-
-          <p class="small muted">Pegá aquí las métricas de tus notebooks: reemplazá las filas anteriores con los valores reales desde Colab.</p>
-        </article>
-
-        <!-- COMPARACION -->
-        <article class="card" id="comparacion">
-          <h3>Comparación: periodos medidos vs estimados (sobre rigidez)</h3>
-
-          <p>En este trabajo <strong>no</strong> comparamos períodos naturales entre sí. Lo que comparamos es el impacto que tiene usar cada tipo de período (medido o estimado) como predictor en los modelos de rigidez lateral.</p>
-
-          <p class="muted small">Interpretación: un período corto → mayor rigidez. Si el período estimado sistemáticamente difiere del medido, los modelos que lo usan producirán estimaciones diferentes de rigidez. El objetivo es evaluar si dichas diferencias son aceptables para uso práctico.</p>
-
-          <h4 style="margin-top:8px">Ejemplo de resultado comparativo (reemplazar)</h4>
-          <table>
-            <thead><tr><th>Configuración</th><th>R²</th><th>RMSE</th><th>Observación</th></tr></thead>
-            <tbody>
-              <tr><td>Modelo con período <strong>medido</strong></td><td>0.87</td><td>0.32</td><td>Baseline (mejor ajuste)</td></tr>
-              <tr><td>Modelo con período <strong>estimado</strong></td><td>0.83</td><td>0.37</td><td>Rendimiento ligeramente inferior pero aceptable</td></tr>
-            </tbody>
-          </table>
-
-          <p class="small muted">Si las métricas son similares, el período estimado se considera válido para predicciones en la práctica.</p>
-        </article>
-
-        <!-- CONCLUSIONES -->
-        <article class="card" id="conclusiones">
-          <h3>Conclusiones (preliminares)</h3>
-          <ul class="small">
-            <li>El período natural es la variable más influyente para predecir rigidez lateral.</li>
-            <li>Las variables geométricas (altura, esbeltez) y la presencia de cerramientos de hormigón son relevantes.</li>
-            <li>Modelos de ensemble (Random Forest / XGBoost) tienden a obtener mejores resultados en precisión y generalización.</li>
-            <li>Si el desempeño del modelo con período <em>estimado</em> es comparable al que usa el período <em>medido</em>, se justifica su uso como herramienta de apoyo en prediseño.</li>
-          </ul>
-
-          <h4 style="margin-top:8px">Equipo</h4>
-          <div class="team">
-            <div>Cherino, Mauricio</div>
-            <div>Dacak Colmán, Estefanía Jazmín</div>
-            <div>Funes Pereyra, Iván</div>
-            <div>Lannia, Leonardo Francisco</div>
-            <div>Martino, Ignacio Nahuel</div>
-            <div>Spera, Gonzalo Miguel</div>
-          </div>
-        </article>
-
-      </div>
-
-      <!-- LATERAL -->
-      <aside>
-        <div class="card">
-          <h3>Enlaces rápidos</h3>
-          <ul class="small">
-            <li><a class="link" href="https://colab.research.google.com/" target="_blank">Google Colab</a></li>
-            <li><a class="link" href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view?usp=drive_link" target="_blank">Dataset (Drive)</a></li>
-            
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Resumen ejecutivo</h3>
-          <p class="small muted">Objetivo: validar si el período estimado permite estimar rigidez con precisión similar al período medido.</p>
-          <div style="margin-top:8px" class="kpi">
-            <div class="item">Mejor modelo: <strong>Random Forest</strong></div>
-            <div class="item">Variable clave: <strong>Período natural</strong></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Contacto</h3>
-          <p class="small">Email: <a class="link" href="mailto:tu@correo.edu">tu@correo.edu</a></p>
-        </div>
-
-      </aside>
-
-    </section>
-
-  </main>
-
-  <footer>
-    <div style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
-      <p class="small muted">Trabajo Integrador — Ciencia de Datos • 2025 •</p>
-    </div>
-  </footer>
-
-</body>
-</html>
+        <h2>Dataset Utilizado</h2>
+        <p>Enlace al dataset original:</p>
+        <p><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view?usp=drive_link" target="_blank">Abrir datas_
