@@ -1,325 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Integrador de Datos – Rigidez Lateral</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: #f7f9fb;
-      color: #1b1b1b;
-      line-height: 1.55;
-    }
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #f4f4f4;
+            padding: 20px;
+            height: 100vh;
+            border-right: 2px solid #ddd;
+        }
 
-    header {
-      background: #2fa3ad;
-      padding: 16px 22px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .sidebar h3 {
+            margin-top: 0;
+        }
 
-    header img {
-      height: 55px;
-    }
+        /* Contenido principal */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
 
-    header .title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-left: 14px;
-    }
+        h1 {
+            margin-bottom: 10px;
+        }
 
-    /* --- NAVBAR --- */
-    nav {
-      background: #e8f5f6;
-      padding: 10px 25px;
-      border-bottom: 1px solid #cfe7e9;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+        nav {
+            margin-bottom: 20px;
+        }
 
-    nav a {
-      font-weight: 600;
-      color: #1b1b1b;
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 6px;
-    }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #0044aa;
+        }
 
-    nav a:hover {
-      background: #d5ecee;
-    }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-    .wrapper {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 22px;
-      padding: 25px;
-      max-width: 1150px;
-      margin: auto;
-    }
+        .divider {
+            border-bottom: 2px solid #ccc;
+            margin: 25px 0;
+        }
 
-    .card {
-      background: white;
-      padding: 18px 22px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      margin-bottom: 22px;
-    }
-
-    h2 {
-      margin-top: 0;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #e4e4e4;
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    h3 {
-      margin-top: 15px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #e4e4e4;
-      font-size: 17px;
-    }
-
-    ul {
-      margin: 6px 0 6px 18px;
-      padding: 0;
-    }
-
-    .side {
-      position: sticky;
-      top: 20px;
-      height: fit-content;
-    }
-
-    a {
-      color: #2fa3ad;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    table th, table td {
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #2fa3ad;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 8px;
-      font-weight: 700;
-    }
-
-    .muted {
-      color: #777;
-      font-size: 14px;
-    }
-
-    @media (max-width: 900px) {
-      .wrapper {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        img.main-img {
+            width: 350px;
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div style="display:flex;align-items:center;">
-      <img src="fiuba.png" alt="FIUBA">
-      <span class="title">Análisis y Modelos Predictivos — Rigidez Lateral</span>
-    </div>
-    <img src="datos.png" alt="datos">
-  </header>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="fiuba.png" width="180" style="margin-bottom:20px">
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#intro">Inicio</a>
-    <a href="#comparacion">Análisis Comparativo</a>
-    <a href="#modelos">Modelos y Metodología</a>
-    <a href="#conclusiones">Resultados y Conclusiones</a>
-  </nav>
+        <h3>Integrantes</h3>
+        <p>Estefanía Dacak<br>
+        (agregá acá si querés más)</p>
 
-  <!-- MAIN CONTENT -->
-  <div class="wrapper">
-
-    <!-- LEFT COLUMN -->
-    <div>
-
-      <div class="card" id="objetivo">
-        <h2>Objetivo</h2>
-        <p>
-          Evaluar si el período natural estimado permite obtener predicciones de
-          <strong>rigidez lateral</strong> comparables a las obtenidas con el período medido, utilizando
-          modelos explicativos y predictivos aplicados a galpones industriales.
-        </p>
-        <a class="btn" href="#modelos">Ir a Modelos</a>
-      </div>
-
-      <div class="card" id="intro">
-        <h2>Introducción</h2>
-        <p>La rigidez lateral es un parámetro clave para la respuesta estructural ante viento y sismo.
-           El período natural medido brinda alta precisión, pero no siempre puede obtenerse. Este
-           trabajo analiza si el período estimado puede reemplazarlo para prediseño.</p>
-      </div>
-
-      <div class="card" id="dataset">
-        <h2>Dataset</h2>
-
-        <h3>Fuente</h3>
-        <p class="muted">Matthew D. Smith & Chia-Ming Uang</p>
-
-        <p>
-          <strong>Dataset:</strong><br>
-          <a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view" target="_blank">
-            Abrir dataset en Google Drive
-          </a>
-        </p>
-
-        <h3>Características</h3>
-        <ul>
-          <li>Variables geométricas, cargas, masa, esbeltez.</li>
-          <li>Período natural medido y estimado.</li>
-          <li>Tipo estructural y materiales de cerramiento.</li>
-          <li>Variable objetivo: <strong>rigidez lateral</strong>.</li>
-        </ul>
-
-        <h3>Procesamiento</h3>
-        <p class="muted">Traducción de variables, limpieza, filtrado y estandarización.</p>
-      </div>
-
-      <div class="card" id="analisis">
-        <h2>Análisis Exploratorio</h2>
-        <p>Se estudiaron distribuciones, correlaciones y relaciones claves:</p>
-
-        <ul>
-          <li>Relación inversa período–rigidez.</li>
-          <li>Variables geométricas influyentes: altura y esbeltez.</li>
-          <li>Se identificaron no linealidades que justificaron modelos no lineales.</li>
-        </ul>
-      </div>
-
-      <div class="card" id="modelos">
-        <h2>Modelos</h2>
-
-        <p>Se evaluaron modelos de regresión lineal, árboles, Random Forest, XGBoost y KNN.</p>
-
-        <h3>Métricas (completar con valores reales)</h3>
-        <table>
-          <thead>
-            <tr><th>Modelo</th><th>R²</th><th>RMSE</th><th>MAE</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Regresión Lineal</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>Árbol</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>Random Forest</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>XGBoost</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>KNN</td><td>--</td><td>--</td><td>--</td></tr>
-          </tbody>
-        </table>
-
-        <p class="muted">
-          Código completo del análisis:<br>
-          <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6"
-             target="_blank">Abrir Colab</a>
-        </p>
-      </div>
-
-      <div class="card" id="comparacion">
-        <h2>Comparación Período Medido vs Estimado</h2>
-
-        <p>
-          No se comparan los períodos entre sí, sino su capacidad para
-          <strong>estimar la rigidez lateral</strong> mediante modelos.
-        </p>
-
-        <table>
-          <thead>
-            <tr><th>Modelo</th><th>R²</th><th>RMSE</th><th>Comentario</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Con período medido</td>
-              <td>0.87</td><td>0.32</td><td>Mejor ajuste</td>
-            </tr>
-            <tr>
-              <td>Con período estimado</td>
-              <td>0.83</td><td>0.37</td><td>Levemente peor, pero válido</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card" id="conclusiones">
-        <h2>Conclusiones</h2>
-
-        <ul>
-          <li>El período natural es la variable más influyente.</li>
-          <li>Random Forest y XGBoost tuvieron mejor performance.</li>
-          <li>El período estimado es un buen sustituto para prediseño.</li>
-        </ul>
-      </div>
-
+        <h3>Contacto</h3>
+        <p>edacak@fi.uba.ar</p>
     </div>
 
-    <!-- RIGHT COLUMN (SIDE BAR) -->
-    <div class="side">
+    <!-- Main content -->
+    <div class="main">
 
-      <div class="card">
-        <h2>Equipo</h2>
+        <h1>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</h1>
 
-        <ul>
-          <li>Martino, Ignacio Nahuel</li>
-          <li>Spera, Gonzalo Miguel</li>
-          <li>Lannia, Leonardo Francisco</li>
-          <li>Cherino, Mauricio</li>
-          <li>Funes Pereyra, Iván</li>
-          <li>Dacak Colmán, Estefanía Jazmín</li>
-        </ul>
+        <!-- NAV -->
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#analisis">Análisis Comparativo</a>
+            <a href="#modelos">Modelos y Metodología</a>
+            <a href="#resultados">Resultados y Conclusiones</a>
+            <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Notebook</a>
+        </nav>
 
-        <p class="muted">
-          Contacto:<br>
-          <a href="mailto:edacak@fi.uba.ar">edacak@fi.uba.ar</a>
-        </p>
-      </div>
+        <div class="divider"></div>
 
-      <div class="card">
-        <h2>Enlaces</h2>
-        <ul>
-          <li><a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6"
-                 target="_blank">Google Colab</a></li>
-          <li><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view"
-                 target="_blank">Dataset</a></li>
-        </ul>
-      </div>
+        <!-- SECCION INICIO -->
+        <section id="inicio">
+            <h2>Inicio</h2>
+            <img src="datos.png" class="main-img">
 
-    </div>
+            <p>
+                Texto introductorio que después completamos con lo que me pases.
+            </p>
+        </section>
 
-  </div>
+        <div class="divider"></div>
 
-</body>
-</html>
+        <!-- SECCION ANALISIS -->
+        <section id="analisis">
