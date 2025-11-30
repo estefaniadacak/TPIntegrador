@@ -3,97 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Página estilo ejemplo</title>
+  <title>TPI - Página principal</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background: #181818;
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
-    .hero {
-      height: 70vh;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://picsum.photos/1600/900');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-top: 15px;
-    }
-    .btn {
-      padding: 12px 25px;
-      margin-top: 20px;
-      background: #ffcc00;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
+    header { background: #222; color: #fff; padding: 20px; text-align: center; }
+    nav { background: #444; padding: 10px; display: flex; gap: 15px; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+    .hero { background: #333; color: #fff; padding: 80px 20px; text-align: center; }
+    .section { max-width: 900px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; }
+    footer { background: #222; color: #fff; padding: 20px; text-align: center; margin-top: 40px; }
   </style>
 </head>
 <body>
   <header>
-    <h2>Mi Web</h2>
+    <h1>Título de tu Trabajo Integrador</h1>
   </header>
 
-  <section class="hero">
-    <h1>Título principal</h1>
-    <p>Este es un subtítulo descriptivo como el de la página que querés replicar. Aquí podés poner cualquier texto.</p>
-    <button class="btn">Botón de acción</button>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#introduccion">Introducción</a>
+    <a href="#contenido">Contenido</a>
+    <a href="#conclusiones">Conclusiones</a>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <h2>Subtítulo o frase destacada</h2>
+    <p>Descripción breve del proyecto.</p>
   </section>
 
-  <section class="section">
-    <h2>Características</h2>
-    <div class="card-container">
-      <div class="card">Bloque 1 con contenido.</div>
-      <div class="card">Bloque 2 con contenido.</div>
-      <div class="card">Bloque 3 con contenido.</div>
-    </div>
+  <section class="section" id="introduccion">
+    <h2>Introducción</h2>
+    <p>Escribe aquí la introducción a tu tema.</p>
+  </section>
+
+  <section class="section" id="contenido">
+    <h2>Contenido principal</h2>
+    <p>Colocá tu desarrollo, imágenes, ejemplos o lo que necesites.</p>
+  </section>
+
+  <section class="section" id="conclusiones">
+    <h2>Conclusiones</h2>
+    <p>Escribe tus conclusiones finales.</p>
   </section>
 
   <footer>
-    © 2025 Mi Web. Todos los derechos reservados.
+    <p>© 2025 - Tu nombre</p>
   </footer>
 </body>
 </html>
+
