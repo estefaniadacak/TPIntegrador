@@ -34,6 +34,28 @@
       margin-left: 14px;
     }
 
+    /* --- NAVBAR --- */
+    nav {
+      background: #e8f5f6;
+      padding: 10px 25px;
+      border-bottom: 1px solid #cfe7e9;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-weight: 600;
+      color: #1b1b1b;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      background: #d5ecee;
+    }
+
     .wrapper {
       display: grid;
       grid-template-columns: 1fr 300px;
@@ -131,9 +153,16 @@
       <img src="fiuba.png" alt="FIUBA">
       <span class="title">Análisis y Modelos Predictivos — Rigidez Lateral</span>
     </div>
-
     <img src="datos.png" alt="datos">
   </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#intro">Inicio</a>
+    <a href="#comparacion">Análisis Comparativo</a>
+    <a href="#modelos">Modelos y Metodología</a>
+    <a href="#conclusiones">Resultados y Conclusiones</a>
+  </nav>
 
   <!-- MAIN CONTENT -->
   <div class="wrapper">
@@ -213,6 +242,11 @@
           </tbody>
         </table>
 
+        <p class="muted">
+          Código completo del análisis:<br>
+          <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6"
+             target="_blank">Abrir Colab</a>
+        </p>
       </div>
 
       <div class="card" id="comparacion">
@@ -276,8 +310,10 @@
       <div class="card">
         <h2>Enlaces</h2>
         <ul>
-          <li><a href="https://colab.research.google.com" target="_blank">Google Colab</a></li>
-          <li><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view" target="_blank">Dataset</a></li>
+          <li><a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6"
+                 target="_blank">Google Colab</a></li>
+          <li><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view"
+                 target="_blank">Dataset</a></li>
         </ul>
       </div>
 
