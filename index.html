@@ -61,8 +61,8 @@
 
   <nav>
     <a href="#inicio">Inicio</a>
-    <a href="#comparacion">Análisis Comparativo</a>
     <a href="#modelos">Modelos</a>
+    <a href="#comparacion">Análisis Comparativo</a>
     <a href="#resultados">Resultados y Conclusiones</a>
   </nav>
 
@@ -74,7 +74,7 @@
       <div class="card" id="intro">
         <h2>1. Introducción</h2>
 
-        <p>
+        <p> 
           La evaluación de la rigidez lateral de estructuras industriales, como los galpones metálicos, es fundamental para garantizar su desempeño ante cargas horizontales como viento o sismo. Tradicionalmente, determinar la rigidez requiere mediciones experimentales del período natural, las cuales pueden resultar costosas y demandar equipamiento especializado. Evaluar si el período natural estimado permite estimar la rigidez lateral de galpones con precisión comparable al período medido, reduciendo así la necesidad de mediciones experimentales.
         </p>
 
@@ -92,7 +92,7 @@
         </blockquote>
 
         <p>
-          Más específicamente, buscamos evaluar si los períodos naturales estimados, disponibles en el dataset, son suficientemente representativos como para utilizarlos en el cálculo de la rigidez lateral de futuras estructuras, sin recurrir a mediciones experimentales.
+          Más específicamente, buscamos evaluar si los períodos naturales estimados y las demas cracteristicas de un galpón, disponibles en el dataset, son suficientemente representativos como para utilizarlos en el cálculo de la rigidez lateral de futuras estructuras, sin recurrir a mediciones experimentales.
         </p>
       </div>
 
@@ -132,27 +132,14 @@
         Carga de Nieve + Tipo de Estructura + Tipo de Techo + 
         Zona de Actividad Sísmica + Viento de Diseño</li>
   </ul>
-          
-          <li>Regresión lineal múltiple</li>
-          <li>Árboles de decisión</li>
-          <li>Random Forest</li>
-          <li>XGBoost</li>
-          <li>KNN Regressor</li>
-        </ul>
-
-        <h3>Métricas (reemplazá con tus valores)</h3>
-        <table>
-          <thead><tr><th>Modelo</th><th>R² (val)</th><th>RMSE</th><th>MAE</th></tr></thead>
-          <tbody>
-            <tr><td>Regresión Lineal</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>Árbol</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>Random Forest</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>XGBoost</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>KNN</td><td>--</td><td>--</td><td>--</td></tr>
-          </tbody>
-        </table>
-
-        <p style="margin-top:8px" class="muted">Notebook: <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Abrir Colab</a></p>
+<div class="brand" style="text-align: center; margin-top: 20px;">
+  <img src="results.png" alt="resultados" class="edge-img" 
+       style="max-width: 160px; display: block; margin: 0 auto;">
+  <div class="brand-text" style="margin-top: 10px; font-size: 1.3rem; font-weight: 600;">
+    Resultados
+  </div>
+</div>
+        <p style="margin-top:8px" class="muted">Códigos y más resultados: <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Abrir Colab</a></p>
       </div>
 
       <div class="card" id="comparacion">
@@ -168,14 +155,44 @@
         </table>
       </div>
 
-      <div class="card" id="resultados">
-        <h2>Resultados y Conclusiones</h2>
-        <ul>
-          <li>La variable más influyente es el período natural.</li>
-          <li>Modelos ensemble (Random Forest / XGBoost) presentan mejor generalización.</li>
-          <li>El uso del período estimado es viable para prediseño con pérdida de precisión limitada.</li>
-        </ul>
-      </div>
+   <div class="card" id="resultados">
+  <h2>Resultados y Conclusiones</h2>
+
+  <p>
+    El estudio permitió evaluar cómo distintas características físicas, geométricas y tipológicas 
+    de los galpones influyen en su rigidez lateral, en términos de LPPD. Los múltiples modelos 
+    analizados mostraron que la rigidez depende de la combinación de varias variables, siendo 
+    algunas mucho más influyentes que otras. En particular, el modelo más completo (modelo 18) 
+    integró simultáneamente las variables más relevantes, convirtiéndose en una herramienta sólida 
+    para aproximar la rigidez y apoyar decisiones de diseño.
+  </p>
+
+  <p>
+    Entre los principales hallazgos, se identificó lo siguiente:
+  </p>
+
+  <ul>
+    <li>La variable más influyente es el período natural, siendo el modelo de única variable mejor posicionada.</li>
+    <li>La estimación del período natural es igual o más efectiva que la fórmula empírica tradicional para aproximar la rigidez.</li>
+    <li>El período estimado es viable para prediseño, con una pérdida de precisión limitada.</li>
+    <li>Un mayor peso estructural o una mayor relación altura/longitud no garantizan mayor rigidez, y en ambos casos los resultados no fueron significativos estadísticamente.</li>
+  </ul>
+
+  <p>
+    También se evidenciaron limitaciones. La ecuación empírica del período natural no resultó útil 
+    para estimar la rigidez lateral: tuvo un desempeño similar al del modelo 18, pero con muy baja 
+    capacidad predictiva, posicionándose recién en el puesto 12. Esto indica la necesidad de 
+    desarrollar una ecuación más adecuada para este tipo de estructuras.
+  </p>
+
+  <p>
+    Finalmente, la cantidad y naturaleza de los datos disponibles restringieron el análisis, y 
+    algunas relaciones parecen exceder lo que un modelo lineal puede capturar. Futuras investigaciones 
+    deberían incorporar más información estructural y explorar modelos más flexibles para representar 
+    mejor las interacciones entre variables y mejorar la precisión de las estimaciones.
+  </p>
+</div>
+
 
     </main>
 
@@ -190,12 +207,12 @@
           <li>Martino, Ignacio Nahuel</li>
           <li>Spera, Gonzalo Miguel</li>
         </ul>
-      <p class="muted" style="margin-top:8px">Contacto: <a href="mailto:edacak@fi.uba.ar">edacak@fi.uba.ar</a> <br> <a href="    ifunesp@fi.uba.ar">ifunesp@fi.uba.ar</a></p> </div>
+      <p class="muted" style="margin-top:8px">Contacto: <a href="mailto:edacak@fi.uba.ar">edacak@fi.uba.ar</a> <br> <a href="ifunesp@fi.uba.ar">ifunesp@fi.uba.ar</a></p> </div>
 
       <div class="card">
         <h3>Enlaces:</h3>
         <ul>
-          <li><a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Notebook (Colab)</a></li>
+          <li><a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Colab</a></li>
           <li><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view" target="_blank">Dataset Galpones</a></li>
         </ul>
       </div>
