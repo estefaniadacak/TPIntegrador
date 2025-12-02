@@ -42,39 +42,33 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="header-inner">
       <div class="brand">
-        <img src="fiuba.png" alt="FIUBA" class="edge-img" style="height:56px">
+        <img src="fiuba.png" alt="FIUBA" class="edge-img">
         <div>
-          <h1>Análisis y Modelos Predictivos — Rigidez Lateral</h1>
-          <p class="muted">Trabajo Integrador • Ciencia de Datos • Dataset: Smith & Uang</p>
+          <h1>Análisis y Modelos Predictivos de la Rigidez Lateral en Galpones</h1>
+          <p class="muted">Trabajo Integrador • Ciencia de Datos • Dataset: Matthew D. Smith y Chia-Ming Uang</p>
         </div>
       </div>
 
       <div style="display:flex;align-items:center;gap:12px">
         <a class="btn" href="#modelos">Ver Modelos</a>
-        <img src="datos.png" alt="datos" class="edge-img" style="height:56px">
+        <img src="datos.png" alt="datos" class="edge-img">
       </div>
     </div>
   </header>
 
-  <!-- NAV under header -->
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#comparacion">Análisis Comparativo</a>
-    <a href="#modelos">Modelos y Metodología</a>
+    <a href="#modelos">Modelos</a>
     <a href="#resultados">Resultados y Conclusiones</a>
   </nav>
 
-  <!-- MAIN -->
   <div class="container">
 
-    <!-- Left column -->
     <main>
-
-      <!-- HERO / Objetivo -->
       <section class="card hero" id="inicio">
         <h2>Objetivo</h2>
         <p class="muted">Evaluar si el período natural estimado permite estimar la rigidez lateral de galpones con precisión comparable al período medido, reduciendo la necesidad de mediciones experimentales costosas.</p>
@@ -85,12 +79,18 @@
 
         <p>
           La evaluación de la rigidez lateral de estructuras industriales, como los galpones metálicos, es fundamental para garantizar su desempeño ante cargas horizontales como viento o sismo. Tradicionalmente, determinar la rigidez requiere mediciones experimentales del período natural, las cuales pueden resultar costosas y demandar equipamiento especializado.
+        </p>
 
         <p>
-          El dataset utilizado en este trabajo, desarrollado por Matthew D. Smith y Chia-Ming Uang, presenta una particularidad relevante: incluye el período natural medido en campo y un período natural estimado mediante modelos teóricos simplificados. Esto habilita una pregunta central para el proyecto:
+          El objetivo es desarrollar un análisis basado en modelos estadísticos que permita estimar y caracterizar la rigidez lateral de los galpones metálicos con cerramientos de hormigón, a fin de comprender su comportamiento estructural y apoyar la toma de decisiones en diseño y verificación.
+        </p>
+
+        <p>
+          El dataset utilizado en este trabajo, desarrollado por Matthew D. Smith y Chia-Ming Uang, presenta una particularidad relevante: incluye el período natural medido en campo y un período natural estimado mediante modelos teóricos simplificados.
         </p>
 
         <blockquote style="border-left:4px solid var(--accent);padding-left:12px;margin:14px 0;font-size:15px;background:#f7fffd;">
+          ¿Cuáles son las características más influyentes de los galpones metálicos a la hora de estimar su rigidez lateral?
           ¿Es posible estimar la rigidez lateral de un galpón a partir de sus características estructurales, geométricas y cargas aplicadas, sin necesidad de medir el período natural real?
         </blockquote>
 
@@ -99,64 +99,12 @@
         </p>
       </div>
 
-      <div class="card" id="analisis">
-        <h2>Análisis Exploratorio</h2>
-        <p class="muted">Se analizaron distribuciones, correlaciones y la relación período–rigidez; se observaron no linealidades que motivaron modelos no lineales y transformaciones exploratorias.</p>
-        <p class="muted">Subí gráficos exportados desde Colab a <code>images/</code> y pegá aquí su referencia si los querés mostrar.</p>
-      </div>
-
-      <div class="card" id="modelos">
-        <h2>Modelos y Metodología</h2>
-        <p>Se entrenaron y compararon:</p>
-        <ul>
-          <li>Regresión lineal múltiple</li>
-        
-        </ul>
-
-        <h3>Métricas (reemplazá con tus valores)</h3>
-        <table>
-          <thead><tr><th>Modelo</th><th>R² (val)</th><th>RMSE</th><th>MAE</th></tr></thead>
-          <tbody>
-            <tr><td>Regresión Lineal</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>Árbol</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>Random Forest</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>XGBoost</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>KNN</td><td>--</td><td>--</td><td>--</td></tr>
-          </tbody>
-        </table>
-
-        <p style="margin-top:8px" class="muted">Notebook: <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Abrir Colab</a></p>
-      </div>
-
-      <div class="card" id="comparacion">
-        <h2>Análisis Comparativo</h2>
-        <p>No comparamos períodos entre sí; comparamos el efecto que tiene usar período <strong>medido</strong> vs <strong>estimado</strong> como predictor en los modelos de rigidez lateral.</p>
-
-        <table>
-          <thead><tr><th>Configuración</th><th>R²</th><th>RMSE</th><th>Comentario</th></tr></thead>
-          <tbody>
-            <tr><td>Con período medido</td><td>0.87</td><td>0.32</td><td>Baseline (mejor ajuste)</td></tr>
-            <tr><td>Con período estimado</td><td>0.83</td><td>0.37</td><td>Rendimiento similar - aceptable</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card" id="resultados">
-        <h2>Resultados y Conclusiones</h2>
-        <ul>
-          <li>La variable más influyente es el período natural.</li>
-          <li>Modelos ensemble (Random Forest / XGBoost) presentan mejor generalización.</li>
-          <li>El uso del período estimado es viable para prediseño con pérdida de precisión limitada.</li>
-        </ul>
-      </div>
-
     </main>
 
-    <!-- Right column / sidebar -->
     <aside class="side">
       <div class="card">
         <h3>Equipo</h3>
-        <ul style="margin-left:18px">
+        <ul>
           <li>Cherino, Mauricio</li>
           <li>Dacak Colmán, Estefanía Jazmín</li>
           <li>Funes Pereyra, Iván</li>
@@ -164,23 +112,15 @@
           <li>Martino, Ignacio Nahuel</li>
           <li>Spera, Gonzalo Miguel</li>
         </ul>
-        <p class="muted" style="margin-top:8px">Contacto: <a href="mailto:edacak@fi.uba.ar">edacak@fi.uba.ar</a></p>
+        <p class="muted">Contacto: edacak@fi.uba.ar<br>    ifunesp@fi.uba.ar</p>
       </div>
-
-      <div class="card">
-        <h3>Enlaces</h3>
-        <ul style="margin-left:18px">
-          <li><a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Google Colab</a></li>
-          <li><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view" target="_blank">Dataset Galpones</a></li>
-        </ul>
-      </div>
-
     </aside>
+
   </div>
 
   <footer>
     <div style="max-width:var(--maxw);margin:18px auto;padding:0 20px;color:var(--muted);text-align:center">
-      Trabajo Integrador — Ciencia de Datos • 2025 •
+      Trabajo Integrador — TB042 Introducción a la Ciencia de Datos para Ingeniería Civil • 2025 •
     </div>
   </footer>
 
