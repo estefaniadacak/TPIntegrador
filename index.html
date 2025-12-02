@@ -134,7 +134,7 @@
   </ul>
         <div class="brand" style="text-align: center; margin-top: 20px;">
   <img src="results.png" alt="resultados"
-       style="width: 450px; display: block; margin: 0 auto;">
+       style="max-width: 100%; width: 700px; display: block; margin: 0 auto;">
   <div class="brand-text" style="margin-top: 10px; font-size: 1.3rem; font-weight: 600;">
     Resultados
   </div>
@@ -144,16 +144,20 @@
 
       <div class="card" id="comparacion">
         <h2>Análisis Comparativo</h2>
-        <p>No comparamos períodos entre sí; comparamos el efecto que tiene usar período <strong>medido</strong> vs <strong>estimado</strong> como predictor en los modelos de rigidez lateral.</p>
 
-        <table>
-          <thead><tr><th>Configuración</th><th>R²</th><th>RMSE</th><th>Comentario</th></tr></thead>
-          <tbody>
-            <tr><td>Con período medido</td><td>0.87</td><td>0.32</td><td>Baseline (mejor ajuste)</td></tr>
-            <tr><td>Con período estimado</td><td>0.83</td><td>0.37</td><td>Rendimiento similar - aceptable</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <p>
+    El análisis comparativo permitió evaluar de manera sistemática el desempeño de distintos predictores y combinaciones de variables en la estimación de la rigidez lateral. En este tipo de estudios, la comparación se centra en identificar qué variables aportan mayor capacidad explicativa y cómo cambia la precisión del modelo al incorporarlas o reemplazarlas.
+  </p>
+
+  <p>
+    En general, se observa que los predictores relacionados con la respuesta dinámica del sistema —como el período natural— suelen presentar un desempeño superior frente a parámetros puramente geométricos o de carga. Esto se debe a que integran simultáneamente efectos de masa, rigidez y configuración estructural. Al comparar diferentes formas de obtener dicho período (medido, estimado, calculado o empírico), es habitual identificar variaciones en la precisión alcanzada, lo que permite distinguir cuáles métodos resultan adecuados para predimensionado y cuáles presentan limitaciones.
+  </p>
+
+  <p>
+    Asimismo, comparar el aporte marginal de otras variables físicas, geométricas y tipológicas permite determinar si influyen de manera significativa o si su efecto es secundario frente a la dinámica estructural. Este tipo de análisis también permite detectar relaciones no lineales o interacciones entre variables que un modelo simple podría no capturar.
+  </p>
+</div>
+
 
    <div class="card" id="resultados">
   <h2>Resultados y Conclusiones</h2>
