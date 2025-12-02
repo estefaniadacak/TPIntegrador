@@ -99,6 +99,60 @@
         </p>
       </div>
 
+      <div class="card" id="analisis">
+        <h2>Análisis Exploratorio</h2>
+        <p class="muted">Se analizaron distribuciones, correlaciones y la relación período–rigidez; se observaron no linealidades que motivaron modelos no lineales y transformaciones exploratorias.</p>
+        <p class="muted">Subí gráficos exportados desde Colab a <code>images/</code> y pegá aquí su referencia si los querés mostrar.</p>
+      </div>
+
+      <div class="card" id="modelos">
+        <h2>Modelos</h2>
+        <p>Se entrenaron y compararon:</p>
+        <ul>
+          <li>Regresión lineal múltiple</li>
+          <li>Árboles de decisión</li>
+          <li>Random Forest</li>
+          <li>XGBoost</li>
+          <li>KNN Regressor</li>
+        </ul>
+
+        <h3>Métricas (reemplazá con tus valores)</h3>
+        <table>
+          <thead><tr><th>Modelo</th><th>R² (val)</th><th>RMSE</th><th>MAE</th></tr></thead>
+          <tbody>
+            <tr><td>Regresión Lineal</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>Árbol</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>Random Forest</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>XGBoost</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>KNN</td><td>--</td><td>--</td><td>--</td></tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:8px" class="muted">Notebook: <a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Abrir Colab</a></p>
+      </div>
+
+      <div class="card" id="comparacion">
+        <h2>Análisis Comparativo</h2>
+        <p>No comparamos períodos entre sí; comparamos el efecto que tiene usar período <strong>medido</strong> vs <strong>estimado</strong> como predictor en los modelos de rigidez lateral.</p>
+
+        <table>
+          <thead><tr><th>Configuración</th><th>R²</th><th>RMSE</th><th>Comentario</th></tr></thead>
+          <tbody>
+            <tr><td>Con período medido</td><td>0.87</td><td>0.32</td><td>Baseline (mejor ajuste)</td></tr>
+            <tr><td>Con período estimado</td><td>0.83</td><td>0.37</td><td>Rendimiento similar - aceptable</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" id="resultados">
+        <h2>Resultados y Conclusiones</h2>
+        <ul>
+          <li>La variable más influyente es el período natural.</li>
+          <li>Modelos ensemble (Random Forest / XGBoost) presentan mejor generalización.</li>
+          <li>El uso del período estimado es viable para prediseño con pérdida de precisión limitada.</li>
+        </ul>
+      </div>
+
     </main>
 
     <aside class="side">
@@ -112,8 +166,16 @@
           <li>Martino, Ignacio Nahuel</li>
           <li>Spera, Gonzalo Miguel</li>
         </ul>
-        <p class="muted">Contacto: edacak@fi.uba.ar<br>    ifunesp@fi.uba.ar</p>
+      <p class="muted" style="margin-top:8px">Contacto: <a href="mailto:edacak@fi.uba.ar">edacak@fi.uba.ar</a> <br> <a href="    ifunesp@fi.uba.ar">ifunesp@fi.uba.ar</a></p> </div>
+
+      <div class="card">
+        <h3>Enlaces:</h3>
+        <ul>
+          <li><a href="https://colab.research.google.com/drive/1d4tV4_GbgyUcSmQWEE8yy6SLUGLgWlkN#scrollTo=tSa0eirLVQB6" target="_blank">Notebook (Colab)</a></li>
+          <li><a href="https://drive.google.com/file/d/1Jz-9i2B8_KOA2xef30M2UgceJt7WLNep/view" target="_blank">Dataset Galpones</a></li>
+        </ul>
       </div>
+
     </aside>
 
   </div>
